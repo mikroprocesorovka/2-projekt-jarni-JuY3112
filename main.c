@@ -41,13 +41,13 @@ lcd_gotoxy(0,0);
 	lcd_puts("insert code");
   while (1){
 		process_keypad(); // obsluhujeme klávesnici
-		if(bombnumber==34){
+		if(bombnumber==34){//bombnumber je promìná která zajišuje že byla zmáèknuta správná kombinace. Souèet èísel 7355617 je 34.
 			bombtimer();
 			FinalStage();
 			sirenka();
 			ledka();
 		}
-if(stav==1){
+if(stav==1){//slouží k vracení programu do stavu jako pøi startu poté, co bomba vybuchne nebo je zneškodnìna
 	lcd_gotoxy(0,0);
 	lcd_puts("insert code");
 	GPIO_WriteHigh(GPIOB,GPIO_PIN_7);
@@ -57,7 +57,7 @@ if(stav==1){
 		
 	}
 }
-void process_keypad(void){
+void process_keypad(void){//funkce starající se  o kontrolu stavu klávesnice a o to jaká klávesa byla zmáèknuta
 static uint8_t minule_stisknuto=0;	
 static uint16_t last_time=0; 
 
@@ -81,7 +81,7 @@ static uint16_t last_time=0;
 
 
 }
-void bombtimer(void){
+void bombtimer(void){//Funkce starající se o "tikání" bomby. Odpoèet na 40 sekund
 static uint16_t posledni_cas=0;
 if(milis() - posledni_cas >= perioda01){
 posledni_cas = milis();
@@ -92,7 +92,7 @@ lcd_puts(text);
 blink_period1 = blink_period1 - 16;
 }
 }
-void FinalStage(void){
+void FinalStage(void){//Funkce starající se o poslení krok bomby a to ve fázi, je-li bomba zneškodnìna
 	if(cas_bomby<= 0){
 	lcd_clear();
 	lcd_gotoxy(0,0);
@@ -113,8 +113,8 @@ void FinalStage(void){
 	stav=1;
 	}
 	}
-void vstup(void){
-if(rezim==1)	{
+void vstup(void){//V této funkci ètu vstup klávesnice a porovávám jaká klávesa byla zmáèkuna.
+if(rezim==1)	{//rezim 1 znamená, že bomba je v režimu pro aktivování
 if(pocetcisel==1 && stisknuto == 7){
 	lcd_clear();
 	stav = 0;
@@ -224,7 +224,7 @@ if(pocetcisel ==7 && stisknuto != 7){
 				
 }
 }		
-if(rezim==2)	{
+if(rezim==2)	{//rezim 2 znamená, že bomba je v režimu pro zneškodnìní
 if(pocetcisel==1 && stisknuto == 7){
 	lcd_gotoxy(0,0);
 	sprintf(text,"%1u",stisknuto);
@@ -322,7 +322,7 @@ if(pocetcisel==7 && stisknuto != 7){
 }
 }		
 }
-void kontrola(void){
+void kontrola(void){//Tato funkce se supstí pokaždé, je-li pøi zneškodnìní zmáèknuta špatná klávesa. Zbývá-li více jak 10 sekund tak se 10 sekund odeète, avšak zbývá-li ménì jak 10 sekund bomba automaticky vybuchne
 if(cas_bomby > 10){
 	lcd_gotoxy(0,0);
 	lcd_puts("incorrect code");
@@ -354,7 +354,7 @@ if(cas_bomby < 10){
 	stav=1;
 }
 }
-void sirenka(void){
+void sirenka(void){//funkce starající se o pípání sirénky
 	
 	static uint16_t posledni_cas=0;	
 		if(milis() - posledni_cas >= blink_period1){
@@ -363,7 +363,7 @@ void sirenka(void){
 	
 }
 }
-void ledka(void){
+void ledka(void){//funkce starající se o blikání ledky
 	static uint16_t posledni_cas=0;	
 		if(milis() - posledni_cas >= blink_period1){
 			posledni_cas = milis();
