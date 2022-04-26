@@ -109,7 +109,7 @@ void FinalStage(void){//Funkce starající se o poslení krok bomby a to ve fázi, j
 	lcd_clear();
 	cas_bomby = 40;
 	rezim =1;
-	blink_period1 = 1000;	
+	blink_period1 = 640;	
 	stav=1;
 	}
 	}
@@ -131,6 +131,7 @@ if(pocetcisel ==1 && stisknuto != 7){
 	bombnumber = 0;
 	delay_ms(1000);
 	lcd_clear();
+	stav=1;
 }
 if(pocetcisel==2 && stisknuto == 3){
 	bombnumber = bombnumber + 3;
@@ -145,6 +146,7 @@ if(pocetcisel ==2 && stisknuto != 3){
 	bombnumber = 0;
 	delay_ms(1000);
 	lcd_clear();
+	stav=1;
 }
 if(pocetcisel==3 && stisknuto == 5){
 	bombnumber = bombnumber + 5;
@@ -159,6 +161,7 @@ if(pocetcisel ==3 && stisknuto !=5 ){
 	bombnumber = 0;
 	delay_ms(1000);
 	lcd_clear();
+	stav=1;
 }
 if(pocetcisel==4 && stisknuto == 5){
 	bombnumber = bombnumber + 5;
@@ -173,6 +176,7 @@ if(pocetcisel ==4 && stisknuto != 5){
 	bombnumber = 0;
 	delay_ms(1000);
 	lcd_clear();
+	stav=1;
 }
 if(pocetcisel==5 && stisknuto == 6){
 	bombnumber = bombnumber + 6;
@@ -187,6 +191,7 @@ if(pocetcisel ==5 && stisknuto != 6){
 	bombnumber = 0;
 	delay_ms(1000);
 	lcd_clear();
+	stav=1;
 }
 if(pocetcisel==6 && stisknuto == 1){
 	bombnumber = bombnumber + 1;
@@ -201,6 +206,7 @@ if(pocetcisel ==6 && stisknuto != 1){
 	bombnumber = 0;
 	delay_ms(1000);
 	lcd_clear();
+	stav=1;
 }
 if(pocetcisel==7 && stisknuto == 7){
 	bombnumber = bombnumber + 7;
@@ -221,6 +227,7 @@ if(pocetcisel ==7 && stisknuto != 7){
 	bombnumber = 0;
 	delay_ms(1000);
   lcd_clear();
+	stav=1;
 				
 }
 }		
